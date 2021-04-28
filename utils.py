@@ -1,5 +1,6 @@
 import subprocess
 
+
 def xrandr():
     monitors = get_monitors(True)
     if (len(monitors) > 1):
@@ -17,3 +18,27 @@ def get_monitors(all=False):
     monitors = subprocess.check_output(
         cmd, shell=True).decode("utf8").splitlines()
     return monitors
+
+
+def show_keys(keys):
+    key_help = ""
+    for k in keys:
+        mods = ""
+
+        for m in k.modifiers:
+            if m == "mod4":
+                mods += "Super + "
+            else:
+                mods += m.capitalize() + " + "
+
+        if len(k.key) > 1:
+            mods += k.key.capitalize()
+        else:
+            mods += k.key
+
+        try:
+            key_help += "{:<30} {}".format(mods, k.desc + "\n")
+        except AttributeError as e:
+            pass
+
+    return key_help

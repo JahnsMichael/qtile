@@ -1,5 +1,6 @@
 from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy
+from utils import show_keys
 import const
 
 mod = const.MOD
@@ -131,6 +132,7 @@ def get_manage_mode_keys(groups):
 
     return keys
 
+
 def get_kill_mode_keys():
     keys = []
     keychords = NAV_KEY_CHORDS
@@ -141,3 +143,8 @@ def get_kill_mode_keys():
     keys.append(KeyChord([mod, "shift"], "c", keychords, mode="kill"))
 
     return keys
+
+
+def show_keys_key(keys):
+    return Key([mod, "shift"], "slash", lazy.spawn("sh -c 'echo \"" + show_keys(keys) +
+        "\" | rofi -columns 1 -width 45 -dmenu -i -mesg \"Keyboard shortcuts\"'"), desc="Print keyboard bindings")
