@@ -19,7 +19,7 @@ from libqtile import hook
 
 from utils import xrandr, get_monitors
 from _screens import get_screens
-from _keys import get_keys, get_group_keys, get_manage_mode_keys, get_kill_mode_keys
+from _keys import get_keys, get_group_keys, get_manage_mode_keys, get_kill_mode_keys, show_keys_key
 from _groups import get_groups
 from _layouts import get_floating_layout, get_layouts
 from _mouse import get_mouse
@@ -56,6 +56,7 @@ keys = get_keys()
 keys.extend(get_group_keys(groups))
 keys.extend(get_manage_mode_keys(groups))
 keys.extend(get_kill_mode_keys())
+keys.append(show_keys_key(keys))
 
 layouts = get_layouts()
 
@@ -77,7 +78,7 @@ dgroups_app_rules = []  # type: List
 main = None  # WARNING: this is deprecated and will be removed soon
 follow_mouse_focus = False
 bring_front_click = False
-cursor_warp = False
+cursor_warp = True
 floating_layout = get_floating_layout()
 auto_fullscreen = True
 focus_on_window_activation = "smart"
