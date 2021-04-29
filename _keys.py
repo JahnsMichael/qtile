@@ -95,8 +95,12 @@ def get_keys():
             desc="Suspend with betterlockscreen"),
         Key([mod], "r", lazy.spawncmd(),
             desc="Spawn a command using a prompt widget"),
+
+        # Rofi keybindings
         Key([mod], "space", lazy.spawn(["rofi", "-show", "drun"]),
-            desc="Spawn a command using a prompt widget"),
+            desc="rofi -show drun"),
+        Key([mod], "b", lazy.spawn(["rofi-bluetooth"]),
+            desc="rofi-bluetooth"),
     ]
 
 
