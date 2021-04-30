@@ -15,7 +15,13 @@ groups = [Group(i) for i in [
 
 groups.append(
     ScratchPad("scratchpad", [
-        DropDown("term", "alacritty", on_focus_lost_hide=True, opacity=1.0),
+        DropDown(
+            "term",
+            ["alacritty", "-o", "background_opacity=0.8"],
+            opacity=1.0,
+            x=0, y=-0.032,
+            width=0.995, height=1.025
+        ),
     ]))
 
 
