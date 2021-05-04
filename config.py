@@ -44,12 +44,6 @@ def autostart():
 def every_start():
     xrandr()
 
-
-@hook.subscribe.screen_change
-def reset_screen(e):
-    screens = get_screens()
-
-
 groups = get_groups()
 
 keys = get_keys()
@@ -61,14 +55,19 @@ keys.append(show_keys_key(keys))
 layouts = get_layouts()
 
 widget_defaults = dict(
-    font='Overpass',
-    fontsize=12,
+    font='Victor Mono',
+    fontsize=11,
     padding=10,
     background=colors.common['bg']
 )
 extension_defaults = widget_defaults.copy()
 
 screens = get_screens()
+
+@hook.subscribe.screen_change
+def reset_screen(e):
+    global screens
+    screens = get_screens()
 
 # Drag floating layouts.
 mouse = get_mouse()

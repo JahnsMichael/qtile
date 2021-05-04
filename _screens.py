@@ -18,11 +18,13 @@ def get_default_screen():
             [
                 widget.GroupBox(
                     rounded=False,
-                    highlight_method="block",
+                    highlight_method="line",
+                    highlight_color= [colors.common['bg'], colors.brown[2]],
                     this_screen_border=colors.common['accent'],
                     this_current_screen_border=colors.brown[2],
                     other_current_screen_border=colors.common['ui'],
                     other_screen_border=colors.common['ui'],
+                    inactive=colors.common['ui'],
                     urgent_border=colors.red[2],
                     padding=5,
                 ),
@@ -35,20 +37,20 @@ def get_default_screen():
                 widget.Chord(),
                 get_sep(),
                 widget.Memory(
-                    background=colors.blue[1],
+                    foreground=colors.blue[1],
                     format='{MemPercent}%{MemUsed: .0f}M/{MemTotal: .0f}M'
                 ),
                 get_sep(),
-                widget.Systray(background=colors.brown[5]),
+                widget.Systray(foreground=colors.brown[5]),
                 get_sep(),
                 widget.Clock(
                     format='%a, %d %b %Y | %H:%M',
-                    background=colors.green[1],
+                    foreground=colors.green[1],
                 ),
                 get_sep(),
                 widget.QuickExit(
                     default_text='⏻',
-                    background=colors.red[2],
+                    foreground=colors.red[2],
                 ),
                 get_sep(),
             ],
