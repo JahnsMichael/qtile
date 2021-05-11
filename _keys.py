@@ -44,6 +44,8 @@ def get_keys():
         Key([mod, "shift"], "Up", lazy.layout.grow(), desc="Grow window up"),
         Key([mod], "n", lazy.layout.normalize(),
             desc="Reset all window sizes"),
+        Key([mod, "shift"], "f", lazy.window.toggle_floating(),
+            desc="Toggle floating"),
         Key([mod, "shift"], "backslash", lazy.layout.flip()),
 
         # Toggle between split and unsplit sides of stack.
@@ -151,4 +153,4 @@ def get_kill_mode_keys():
 
 def show_keys_key(keys):
     return Key([mod, "shift"], "slash", lazy.spawn("sh -c 'echo \"" + show_keys(keys) +
-        "\" | rofi -columns 1 -width 45 -dmenu -i -mesg \"Keyboard shortcuts\"'"), desc="Print keyboard bindings")
+                                                   "\" | rofi -columns 1 -width 45 -dmenu -i -mesg \"Keyboard shortcuts\"'"), desc="Print keyboard bindings")
