@@ -56,6 +56,8 @@ def get_keys():
             desc="Toggle between split and unsplit sides of stack"),
         Key([mod], "Return", lazy.group["scratchpad"].dropdown_toggle('term'),
             desc="Launch terminal"),
+        Key([mod], "backslash", lazy.group["scratchpad"].dropdown_toggle('mocp'),
+            desc="Launch mocp"),
 
         # Toggle between different layouts as defined below
         Key([mod, "shift"], "Tab", lazy.next_layout(),
