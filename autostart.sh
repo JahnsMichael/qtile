@@ -4,4 +4,4 @@ picom --experimental-backend &
 nitrogen --restore &
 volumeicon &
 nm-applet &
-# conky &
+conky &
