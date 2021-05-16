@@ -53,12 +53,13 @@ def get_default_screen():
                 widget.QuickExit(
                     default_text='⏻',
                     foreground=colors.red[0],
-                    font='Victor Mono Bold'    
+                    font='Victor Mono Bold'
                 ),
                 get_sep(),
             ],
             24,
-        )
+            opacity=0.80
+        ),
     )
 
 
