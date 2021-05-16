@@ -45,7 +45,7 @@ def get_default_screen():
                 widget.Systray(foreground=colors.brown[5]),
                 get_sep(),
                 widget.Clock(
-                    format='%a, %d %b %Y | %H:%M',
+                    format='%a, %d %b %Y | %H:%M:%S',
                     foreground=colors.green[0],
                     font='Victor Mono Bold'
                 ),
