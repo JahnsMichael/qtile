@@ -55,7 +55,7 @@ keys.append(show_keys_key(keys))
 layouts = get_layouts()
 
 widget_defaults = dict(
-    font='Victor Mono Medium',
+    font='Titillium Web',
     fontsize=11,
     padding=10,
     background=colors.common['bg']

@@ -39,7 +39,7 @@ def get_default_screen():
                 widget.Memory(
                     foreground=colors.blue[0],
                     format='{MemPercent}%{MemUsed: .0f}M/{MemTotal: .0f}M',
-                    font='Victor Mono Bold'
+                    font='Titillium Web Bold'
                 ),
                 get_sep(),
                 widget.Systray(foreground=colors.brown[5]),
@@ -47,13 +47,13 @@ def get_default_screen():
                 widget.Clock(
                     format='%a, %d %b %Y | %H:%M:%S',
                     foreground=colors.green[0],
-                    font='Victor Mono Bold'
+                    font='Titillium Web Bold'
                 ),
                 get_sep(),
                 widget.QuickExit(
                     default_text='⏻',
                     foreground=colors.red[0],
-                    font='Victor Mono Bold'
+                    font='Titillium Web Bold'
                 ),
                 get_sep(),
             ],
