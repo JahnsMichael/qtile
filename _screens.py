@@ -42,6 +42,17 @@ def get_default_screen():
                     font='Titillium Web Bold'
                 ),
                 get_sep(),
+                widget.Battery(
+                    foreground=colors.brown[5],
+                    format='{char} {percent:2.0%}',
+                    discharge_char='',
+                    low_percentage=0.1,
+                    low_foreground=colors.red[0],
+                    notify_below=20,
+                    show_sort_text=False,
+                    font='Titillium Web Bold'
+                ),
+                get_sep(),
                 widget.Systray(foreground=colors.brown[5]),
                 get_sep(),
                 widget.Clock(
