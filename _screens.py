@@ -48,7 +48,7 @@ def get_default_screen():
                     discharge_char='',
                     low_percentage=0.1,
                     low_foreground=colors.red[0],
-                    notify_below=20,
+                    # notify_below=20,
                     show_sort_text=False,
                     font='Titillium Web Bold'
                 ),
