@@ -19,7 +19,14 @@ from libqtile import hook
 
 from utils import xrandr, get_monitors
 from _screens import get_screens
-from _keys import get_keys, get_group_keys, get_manage_mode_keys, get_kill_mode_keys, show_keys_key
+from _keys import ( 
+    get_keys, 
+    get_group_keys, 
+    get_move_mode_keys, 
+    get_manage_mode_keys, 
+    get_kill_mode_keys, 
+    show_keys_key 
+)
 from _groups import get_groups
 from _layouts import get_floating_layout, get_layouts
 from _mouse import get_mouse
@@ -44,6 +51,7 @@ groups = get_groups()
 keys = get_keys()
 keys.extend(get_group_keys(groups))
 keys.extend(get_manage_mode_keys(groups))
+keys.extend(get_move_mode_keys(groups))
 keys.extend(get_kill_mode_keys())
 keys.append(show_keys_key(keys))
 

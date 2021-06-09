@@ -10,7 +10,11 @@ NAV_KEY_CHORDS = [
     Key([], "Left", lazy.layout.left(), desc="Move focus to left"),
     Key([], "Right", lazy.layout.right(), desc="Move focus to right"),
     Key([], "Down", lazy.layout.down(), desc="Move focus down"),
-    Key([], "Up", lazy.layout.up(), desc="Move focus up")
+    Key([], "Up", lazy.layout.up(), desc="Move focus up"),
+    Key(["control"], "Left", lazy.next_screen(),
+            desc="Move Focus to next screen"),
+    Key(["control"], "Right", lazy.prev_screen(),
+        desc="Move Focus to next screen"),
 ]
 
 
@@ -127,15 +131,64 @@ def get_group_keys(groups):
     return keys
 
 
-def get_manage_mode_keys(groups):
+def get_move_mode_keys(groups):
     keys = []
-    keychords = NAV_KEY_CHORDS
+    keychords = NAV_KEY_CHORDS.copy()
 
     for group in groups:
-        keychords.append(Key([], group.name[0], lazy.window.togroup(
-            group.name), desc="move focused window to group {}".format(group.name)))
+        keychords.append(
+            Key(
+                [], group.name[0],
+                lazy.window.togroup(group.name),
+                desc="move focused window to group {}".format(group.name)
+            )
+        )
+        keychords.append(
+            Key(
+                ['mod1'], group.name[0],
+                lazy.window.togroup(group.name, switch_group=True),
+                desc="move focused window and jump to group {}".format(
+                    group.name)
+            )
+        )
 
     keys.append(KeyChord([mod], "m", keychords))
+
+    return keys
+
+
+def get_manage_mode_keys(groups):
+    keys = []
+    keychords = NAV_KEY_CHORDS.copy()
+
+    keychords.append(
+        Key([], "c", lazy.window.kill(), desc="Kill focused window"),
+    )
+
+    for group in groups:
+        keychords.append(
+            Key(
+                [], group.name[0],
+                lazy.group[group.name].toscreen(),
+                desc="Switch to group {}".format(group.name)
+            )
+        )
+        keychords.append(
+            Key(
+                ['mod1'], group.name[0],
+                lazy.window.togroup(group.name, switch_group=True),
+                desc="move focused window and jump to group {}".format(
+                    group.name)
+            )
+        )
+        keychords.append(
+            Key(
+                ['shift'], group.name[0],
+                lazy.window.togroup(group.name),
+                desc="move focused window to group {}".format(group.name)
+            )
+        )
+
     keys.append(KeyChord([mod, "shift"], "m", keychords, mode="manage"))
 
     return keys
@@ -154,5 +207,12 @@ def get_kill_mode_keys():
 
 
 def show_keys_key(keys):
-    return Key([mod, "shift"], "slash", lazy.spawn("sh -c 'echo \"" + show_keys(keys) +
-                                                   "\" | rofi -columns 1 -width 45 -dmenu -i -mesg \"Keyboard shortcuts\"'"), desc="Print keyboard bindings")
+    return Key(
+        [mod, "shift"], "slash",
+        lazy.spawn(
+            "sh -c 'echo \"" +
+            show_keys(keys) +
+            "\" | rofi -columns 1 -width 45 -dmenu -i -mesg \"Keyboard shortcuts\"'"
+        ),
+        desc="Print keyboard bindings"
+    )
