@@ -39,11 +39,6 @@ def autostart():
     subprocess.call([home])
     xrandr()
 
-
-@hook.subscribe.startup
-def every_start():
-    xrandr()
-
 groups = get_groups()
 
 keys = get_keys()
@@ -64,10 +59,16 @@ extension_defaults = widget_defaults.copy()
 
 screens = get_screens()
 
-@hook.subscribe.screen_change
-def reset_screen(e):
+@hook.subscribe.startup
+def every_start():
     global screens
     screens = get_screens()
+    xrandr()
+
+# @hook.subscribe.screen_change
+# def reset_screen(e):
+#     global screens
+#     screens = get_screens()
 
 # Drag floating layouts.
 mouse = get_mouse()

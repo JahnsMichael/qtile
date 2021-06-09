@@ -2,7 +2,7 @@ import subprocess
 
 
 def xrandr():
-    monitors = get_monitors(True)
+    monitors = get_monitors()
     if (len(monitors) > 1):
         cmd = "xrandr "
         for i in range(1, len(monitors)):
