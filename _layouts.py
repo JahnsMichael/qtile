@@ -49,7 +49,7 @@ def get_floating_layout():
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
 
-        Match(wm_class='pavucontrol'),
-        Match(wm_class='pamac-manager'),
+        # Match(wm_class='pavucontrol'),
+        # Match(wm_class='pamac-manager'),
         Match(wm_class='Conky'),
     ], **layout_theme)
