@@ -67,33 +67,30 @@ def get_default_screen():
         bottom=bar.Bar(
             [
                 get_sep(),
-                widget.Image(
-                    filename='~/.config/qtile/assets/manjaro-logo.png',
-                    margin=2,
+                widget.TextBox(
+                    text="",
+                    font="Font Awesome 5 Free Solid",
                     mouse_callbacks={
                         'Button1': lambda: qtile.cmd_spawn(["rofi", "-show", "drun"])
                     }
                 ),
-                get_sep(20),
-                widget.Image(
-                    filename='~/.config/qtile/assets/file-manager.png',
-                    margin=2,
+                widget.TextBox(
+                    text="",
+                    font="Font Awesome 5 Free Solid",
                     mouse_callbacks={
                         'Button1': lambda: qtile.cmd_spawn(["pcmanfm"])
                     }
                 ),
-                get_sep(),
-                widget.Image(
-                    filename='~/.config/qtile/assets/terminal.png',
-                    margin=2,
+                widget.TextBox(
+                    text="",
+                    font="Font Awesome 5 Free Solid",
                     mouse_callbacks={
                         'Button1': lambda: qtile.cmd_spawn(["alacritty"])
                     }
                 ),
-                get_sep(),
-                widget.Image(
-                    filename='~/.config/qtile/assets/web-browser.png',
-                    margin=2,
+                widget.TextBox(
+                    text="",
+                    font="Font Awesome 5 Free Solid",
                     mouse_callbacks={
                         'Button1': lambda: qtile.cmd_spawn(["brave"])
                     }
