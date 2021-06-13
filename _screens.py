@@ -1,5 +1,6 @@
-from libqtile import bar, widget
+from libqtile import qtile, bar, widget
 from libqtile.config import Screen
+from libqtile.lazy import lazy
 from utils import get_monitors
 
 import colors
@@ -53,13 +54,41 @@ def get_default_screen():
                     font='Titillium Web Bold'
                 ),
                 get_sep(),
-                widget.Systray(foreground=colors.brown[5]),
-                get_sep(),
                 widget.Clock(
                     format='%a, %d %b %Y | %H:%M:%S',
                     foreground=colors.green[0],
                     font='Titillium Web Bold'
                 ),
+                get_sep(),
+            ],
+            25,
+            opacity=0.90
+        ),
+        bottom=bar.Bar(
+            [
+                get_sep(),
+                widget.Image(
+                    filename='~/.config/qtile/assets/manjaro-logo.png',
+                    margin=2,
+                    mouse_callbacks={
+                        'Button1': lambda: qtile.cmd_spawn(["rofi", "-show", "drun"])
+                    }
+                ),
+                get_sep(),
+                widget.TaskList(
+                    border=colors.brown[2],
+                    rounded=False,
+                    highlight_method='block',
+                    txt_floating='🗗 ',
+                    txt_maximized='🗖 ',
+                    txt_minimized='🗕 ',
+                    padding=4,
+                    margin=0,
+                    icon_size=15,
+                    max_title_width=200,
+                ),
+                get_sep(),
+                widget.Systray(foreground=colors.brown[5]),
                 get_sep(),
                 widget.QuickExit(
                     default_text='⏻',
@@ -68,9 +97,9 @@ def get_default_screen():
                 ),
                 get_sep(),
             ],
-            24,
-            opacity=0.80
-        ),
+            25,
+            opacity=0.90,
+        )
     )
 
 
