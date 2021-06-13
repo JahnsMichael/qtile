@@ -6,10 +6,10 @@ from utils import get_monitors
 import colors
 
 
-def get_sep():
+def get_sep(width=5):
     return widget.Sep(
         foreground=colors.common['bg'],
-        linewidth=5
+        linewidth=width
     )
 
 
@@ -74,7 +74,31 @@ def get_default_screen():
                         'Button1': lambda: qtile.cmd_spawn(["rofi", "-show", "drun"])
                     }
                 ),
+                get_sep(20),
+                widget.Image(
+                    filename='~/.config/qtile/assets/file-manager.png',
+                    margin=2,
+                    mouse_callbacks={
+                        'Button1': lambda: qtile.cmd_spawn(["pcmanfm"])
+                    }
+                ),
                 get_sep(),
+                widget.Image(
+                    filename='~/.config/qtile/assets/terminal.png',
+                    margin=2,
+                    mouse_callbacks={
+                        'Button1': lambda: qtile.cmd_spawn(["alacritty"])
+                    }
+                ),
+                get_sep(),
+                widget.Image(
+                    filename='~/.config/qtile/assets/web-browser.png',
+                    margin=2,
+                    mouse_callbacks={
+                        'Button1': lambda: qtile.cmd_spawn(["brave"])
+                    }
+                ),
+                get_sep(20),
                 widget.TaskList(
                     border=colors.brown[2],
                     rounded=False,
