@@ -1,16 +1,16 @@
 from libqtile.config import Group, ScratchPad, DropDown
 
 groups = [Group(i) for i in [
-    "1:[CODE]",
+    "1",
     "2",
-    "3:[WWW]",
+    "3",
     "4",
     "5",
-    "6:[PEN]",
-    "7:[DOC]",
-    "8:[MEET]",
-    "9:[SOS]",
-    "0:[MUSIC]"
+    "6",
+    "7",
+    "8",
+    "9",
+    "0"
 ]]
 
 groups.append(

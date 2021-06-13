@@ -14,21 +14,70 @@ def get_sep(width=5):
 
 
 def get_default_screen():
+    group_box_attr = {
+        "rounded" : False,
+        "highlight_method" : "line",
+        "other_current_screen_border" : colors.common['ui'],
+        "other_screen_border" : colors.common['ui'],
+        "inactive" : colors.common['ui'],
+        "urgent_border" : colors.red[2],
+        "padding" : 5,
+    }
     return Screen(
         top=bar.Bar(
             [
+                widget.TextBox(
+                    text="",
+                    font="Font Awesome 5 Free Solid",
+                    foreground=colors.brown[0],
+                ),
                 widget.GroupBox(
-                    rounded=False,
-                    highlight_method="line",
+                    **group_box_attr,
                     highlight_color=[colors.common['bg'], colors.brown[2]],
                     this_screen_border=colors.common['accent'],
                     this_current_screen_border=colors.brown[2],
-                    other_current_screen_border=colors.common['ui'],
-                    other_screen_border=colors.common['ui'],
-                    inactive=colors.common['ui'],
-                    urgent_border=colors.red[2],
-                    padding=5,
+                    visible_groups=["1", "2"]
                 ),
+                get_sep(10),
+                widget.TextBox(
+                    text="",
+                    font="Font Awesome 5 Free Solid",
+                    foreground=colors.blue[0]
+                ),
+                widget.GroupBox(
+                    **group_box_attr,
+                    highlight_color=[colors.common['bg'], colors.blue[0]],
+                    this_screen_border=colors.blue[0],
+                    this_current_screen_border=colors.blue[1],
+                    visible_groups=["3", "4", "5"]
+                ),
+                get_sep(10),
+                widget.TextBox(
+                    text="",
+                    font="Font Awesome 5 Free Solid",
+                    foreground=colors.green[0],
+                ),
+                widget.GroupBox(
+                    **group_box_attr,
+                    highlight_color=[colors.common['bg'], colors.green[0]],
+                    this_screen_border=colors.green[0],
+                    this_current_screen_border=colors.green[1],
+                    visible_groups=["6", "7"]
+                ),
+                get_sep(10),
+                widget.TextBox(
+                    text="",
+                    font="Font Awesome 5 Free Solid",
+                    foreground=colors.red[0],
+                ),
+                widget.GroupBox(
+                    **group_box_attr,
+                    highlight_color=[colors.common['bg'], colors.red[0]],
+                    this_screen_border=colors.red[0],
+                    this_current_screen_border=colors.red[1],
+                    visible_groups=["8", "9", "0"]
+                ),
+                get_sep(10),
                 widget.WindowName(max_chars=30),
                 get_sep(),
                 widget.Notify(max_chars=30),
@@ -59,7 +108,7 @@ def get_default_screen():
                     foreground=colors.green[0],
                     font='Titillium Web Bold'
                 ),
-                get_sep(),
+                get_sep(20),
             ],
             25,
             opacity=0.90
@@ -70,6 +119,7 @@ def get_default_screen():
                 widget.TextBox(
                     text="",
                     font="Font Awesome 5 Free Solid",
+                    foreground=colors.green[0],
                     mouse_callbacks={
                         'Button1': lambda: qtile.cmd_spawn(["rofi", "-show", "drun"])
                     }
@@ -77,6 +127,7 @@ def get_default_screen():
                 widget.TextBox(
                     text="",
                     font="Font Awesome 5 Free Solid",
+                    foreground=colors.brown[1],
                     mouse_callbacks={
                         'Button1': lambda: qtile.cmd_spawn(["pcmanfm"])
                     }
@@ -84,6 +135,7 @@ def get_default_screen():
                 widget.TextBox(
                     text="",
                     font="Font Awesome 5 Free Solid",
+                    foreground=colors.red[0],
                     mouse_callbacks={
                         'Button1': lambda: qtile.cmd_spawn(["alacritty"])
                     }
@@ -91,6 +143,7 @@ def get_default_screen():
                 widget.TextBox(
                     text="",
                     font="Font Awesome 5 Free Solid",
+                    foreground=colors.blue[0],
                     mouse_callbacks={
                         'Button1': lambda: qtile.cmd_spawn(["brave"])
                     }
@@ -110,13 +163,13 @@ def get_default_screen():
                 ),
                 get_sep(),
                 widget.Systray(foreground=colors.brown[5]),
-                get_sep(),
+                get_sep(20),
                 widget.QuickExit(
-                    default_text='⏻',
+                    default_text='',
                     foreground=colors.red[0],
-                    font='Titillium Web Bold'
+                    font='Font Awesome 5 Free Solid'
                 ),
-                get_sep(),
+                get_sep(20),
             ],
             25,
             opacity=0.90,
