@@ -3,6 +3,6 @@ lxsession &
 picom --experimental-backend &
 nitrogen --restore &
 volumeicon &
-conky &
+# conky &
 xset s off -dpms
 # cmst &
