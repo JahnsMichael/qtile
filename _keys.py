@@ -2,6 +2,9 @@ from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy
 from utils import show_keys
 import const
+import datetime
+
+from scripts import screenshot
 
 mod = const.MOD
 
@@ -12,7 +15,7 @@ NAV_KEY_CHORDS = [
     Key([], "Down", lazy.layout.down(), desc="Move focus down"),
     Key([], "Up", lazy.layout.up(), desc="Move focus up"),
     Key(["control"], "Left", lazy.next_screen(),
-            desc="Move Focus to next screen"),
+        desc="Move Focus to next screen"),
     Key(["control"], "Right", lazy.prev_screen(),
         desc="Move Focus to next screen"),
 ]
@@ -88,12 +91,15 @@ def get_keys():
         Key([mod, "mod1"], "Return", lazy.window.toggle_maximize(),
             desc="Toggle maximize window"),
 
-
+        # Brightness
         Key([], "XF86MonBrightnessDown", lazy.spawn(["xbacklight", "-dec", "5"]),
             desc="Set brightness down"),
-
         Key([], "XF86MonBrightnessUp", lazy.spawn(["xbacklight", "-inc", "5"]),
             desc="Set brightness up"),
+
+        # Screenshots
+        Key([], "Print", lazy.function(screenshot),
+            desc="Take a screenshot, select region"),
 
         Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
         Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
