@@ -52,4 +52,5 @@ def get_floating_layout():
         # Match(wm_class='pavucontrol'),
         # Match(wm_class='pamac-manager'),
         Match(wm_class='Conky'),
+        Match(wm_class='pentablet'),
     ], **layout_theme)
