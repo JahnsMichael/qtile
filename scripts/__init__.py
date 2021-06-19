@@ -2,17 +2,13 @@ from libqtile.lazy import lazy
 
 import os
 import subprocess
+import datetime
 
 HOME = os.path.expanduser('~')
 SCRIPTS_DIR = f'{HOME}/.config/qtile/scripts/'
 
-def autostart():
-    script = SCRIPTS_DIR + 'autostart'
-    subprocess.call([script])
-
-def screenshot(lazy=True):
-    script = SCRIPTS_DIR + 'screenshot'
-    if lazy:
-        lazy.spawn(script)
-    else:
-        subprocess.call([script])
+def screenshot(qtile):
+    date = datetime.datetime.now().strftime("%m%d%Y-%H%M%S")
+    filename = os.path.expanduser(f'~/Pictures/Screenshots/{date}.png')
+    qtile.cmd_spawn(f'maim -s {filename}')
+    
