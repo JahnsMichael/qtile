@@ -1,13 +1,13 @@
-                                                               
-#   ▄▄█▀▀██▄                               ▀███▀▀▀██▄ ▀███▀▀▀███ 
-# ▄██▀    ▀██▄                               ██    ▀██▄ ██    ▀█ 
-# ██▀      ▀██ ▄█▀██▄ ▀██▀   ▀██▀███  ▀███   ██     ▀██ ██   █   
-# ██        ████   ██   ██   ▄█   ██    ██   ██      ██ ██████   
+
+#   ▄▄█▀▀██▄                               ▀███▀▀▀██▄ ▀███▀▀▀███
+# ▄██▀    ▀██▄                               ██    ▀██▄ ██    ▀█
+# ██▀      ▀██ ▄█▀██▄ ▀██▀   ▀██▀███  ▀███   ██     ▀██ ██   █
+# ██        ████   ██   ██   ▄█   ██    ██   ██      ██ ██████
 # ██▄      ▄██ ▄█████    ██ ▄█    ██    ██   ██     ▄██ ██   █  ▄
 # ▀██▄    ▄██▀██   ██     ███     ██    ██   ██    ▄██▀ ██     ▄█
 #   ▀▀████▀▀  ▀████▀██▄   ▄█      ▀████▀███▄████████▀ ▄██████████
-#       ███             ▄█                                       
-#        ▀████▀       ██▀                                        
+#       ███             ▄█
+#        ▀████▀       ██▀
 
 # Qtile config for Jahns Michael's desktop.
 
@@ -17,44 +17,27 @@ from typing import List  # noqa: F401
 
 from libqtile import hook
 
-from utils import xrandr, get_monitors
-from _screens import get_screens
-from _keys import ( 
-    get_keys, 
-    get_group_keys, 
-    get_move_mode_keys, 
-    get_manage_mode_keys, 
-    get_kill_mode_keys, 
-    show_keys_key 
-)
-from _groups import get_groups
-from _layouts import get_floating_layout, get_layouts
-from _mouse import get_mouse
+from lib.scripts import xrandr, get_monitors
+from lib.screens import get_screens
+from lib.keys import get_keys
+from lib.groups import get_groups
+from lib.layouts import get_floating_layout, get_layouts
+from lib.mouse import get_mouse
+from lib.const import colors
 
 import os
 import subprocess
-import colors
-import const
-
-mod = const.MOD
-terminal = const.TERM
 
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    home = os.path.expanduser('~/.config/qtile/lib/scripts/autostart')
     subprocess.call([home])
     xrandr()
 
+
 groups = get_groups()
-
 keys = get_keys()
-keys.extend(get_group_keys(groups))
-keys.extend(get_manage_mode_keys(groups))
-keys.extend(get_move_mode_keys(groups))
-keys.extend(get_kill_mode_keys())
-keys.append(show_keys_key(keys))
-
 layouts = get_layouts()
 
 widget_defaults = dict(
@@ -64,19 +47,15 @@ widget_defaults = dict(
     background=colors.common['bg']
 )
 extension_defaults = widget_defaults.copy()
-
 screens = get_screens()
+
 
 @hook.subscribe.startup
 def every_start():
     global screens
-    screens = get_screens()
     xrandr()
+    screens = get_screens()
 
-# @hook.subscribe.screen_change
-# def reset_screen(e):
-#     global screens
-#     screens = get_screens()
 
 # Drag floating layouts.
 mouse = get_mouse()

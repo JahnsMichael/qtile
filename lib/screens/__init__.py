@@ -1,9 +1,9 @@
 from libqtile import qtile, bar, widget
 from libqtile.config import Screen
 from libqtile.lazy import lazy
-from utils import get_monitors
+from lib.scripts import get_monitors
 
-import colors
+from lib.const import colors
 
 
 def get_sep(width=5):

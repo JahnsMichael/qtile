@@ -1,6 +1,6 @@
 from libqtile.config import Group, ScratchPad, DropDown
 
-groups = [Group(i) for i in [
+GROUPS = [Group(i) for i in [
     "1",
     "2",
     "3",
@@ -13,7 +13,7 @@ groups = [Group(i) for i in [
     "0"
 ]]
 
-groups.append(
+GROUPS.append(
     ScratchPad("scratchpad", [
         DropDown(
             "term",
@@ -33,4 +33,4 @@ groups.append(
 
 
 def get_groups():
-    return groups
+    return GROUPS
