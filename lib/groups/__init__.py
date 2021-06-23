@@ -1,17 +1,25 @@
-from libqtile.config import Group, ScratchPad, DropDown
+from libqtile.config import (
+    Group,
+    Match,
+    ScratchPad, 
+    DropDown
+)
 
-GROUPS = [Group(i) for i in [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "0"
-]]
+GROUPS = [
+    Group("1"),
+    Group("2"),
+    Group("3"),
+    Group("4"),
+    Group("5"),
+    Group("6"),
+    Group("7"),
+    Group("8"),
+    Group("9", matches=[
+        Match(wm_class="web.whatsapp.com"), # Whatsapp Web
+        Match(wm_class="ophjlpahpchlmihnnnihgmmeilfjmjjc__index.html"), # LINE Browser Extension
+    ]),
+    Group("0")
+]
 
 GROUPS.append(
     ScratchPad("scratchpad", [
