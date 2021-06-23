@@ -14,6 +14,8 @@ UTIL_KEYS = [
 ROFI_KEYS = [
     Key([], "space", lazy.spawn(["rofi", "-show", "drun"]),
             desc="rofi -show drun"),
+    Key(['mod1'], "space", lazy.spawn(["rofi", "-show", "file-browser-extended"]),
+            desc="rofi -show file-browser-extended"),
     Key([], "b", lazy.spawn(["rofi-bluetooth"]),
         desc="rofi-bluetooth"),
 ]
