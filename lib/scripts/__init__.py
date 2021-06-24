@@ -11,10 +11,6 @@ def screenshot(qtile):
     date = datetime.datetime.now().strftime("%m%d%Y-%H%M%S")
     filename = os.path.expanduser(f'~/Pictures/Screenshots/{date}.png')
     qtile.cmd_spawn(f'maim -s {filename}')
-
-def sosmed(qtile):
-    qtile.cmd_spawn('brave --app=https://web.whatsapp.com')
-    qtile.cmd_spawn('brave --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html')
     
 def xrandr():
     monitors = get_monitors()

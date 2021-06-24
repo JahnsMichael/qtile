@@ -1,22 +1,29 @@
 from libqtile.config import (
     Group,
     Match,
-    ScratchPad, 
+    ScratchPad,
     DropDown
 )
 
 GROUPS = [
-    Group("1"),
+    Group("1", matches=[
+        Match(wm_class="vscodium"),  # vscodium
+    ]),
     Group("2"),
-    Group("3"),
+    Group("3", matches=[
+        Match(role="browser"),  # browser
+    ]),
     Group("4"),
     Group("5"),
-    Group("6"),
+    Group("6", matches=[
+        Match(wm_class="pcmanfm"),  # pcmanfm file browser
+    ]),
     Group("7"),
     Group("8"),
     Group("9", matches=[
-        Match(wm_class="web.whatsapp.com"), # Whatsapp Web
-        Match(wm_class="ophjlpahpchlmihnnnihgmmeilfjmjjc__index.html"), # LINE Browser Extension
+        Match(wm_class="web.whatsapp.com"),  # Whatsapp Web
+        # LINE Browser Extension
+        Match(wm_class="ophjlpahpchlmihnnnihgmmeilfjmjjc__index.html"),
     ]),
     Group("0")
 ]

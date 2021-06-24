@@ -3,7 +3,6 @@ from libqtile.lazy import lazy
 from lib.const import MOD
 from lib.scripts import (
     screenshot,
-    sosmed
 )
 
 UTIL_KEYS = [
@@ -13,8 +12,6 @@ UTIL_KEYS = [
         desc="Set brightness up"),
     Key([], "Print", lazy.function(screenshot),
             desc="Take a screenshot, select region"),
-    Key([MOD, 'control'], "9", lazy.function(sosmed),
-        desc="Spawn social media's apps."),
 ]
 
 ROFI_KEYS = [
@@ -24,6 +21,21 @@ ROFI_KEYS = [
         desc="rofi -show file-browser-extended"),
     Key([], "b", lazy.spawn(["rofi-bluetooth"]),
         desc="rofi-bluetooth"),
+]
+
+def sosmed(qtile):
+    qtile.cmd_spawn('/usr/bin/brave --app=https://web.whatsapp.com')
+    qtile.cmd_spawn('/usr/bin/brave --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html')
+
+APP_KEYS = [
+    Key(['control'], "1", lazy.spawn(["/usr/bin/codium", "-n"]),
+        desc="Spawn text editor."),
+    Key(['control'], "3", lazy.spawn(['/usr/bin/brave']),
+        desc="Spawn web browser."),
+    Key(['control'], "6", lazy.spawn(["/usr/bin/pcmanfm"]),
+        desc="Spawn file browser."),
+    Key(['control'], "9", lazy.function(sosmed),
+        desc="Spawn social media's apps."),
 ]
 
 # def show_keys_key(keys):
