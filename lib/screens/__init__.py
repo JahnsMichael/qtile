@@ -80,15 +80,11 @@ def get_default_screen():
                 get_sep(10),
                 widget.WindowName(max_chars=30),
                 get_sep(),
-                widget.Notify(max_chars=30),
-                get_sep(),
-                widget.CurrentLayout(),
-                get_sep(),
                 widget.Chord(),
                 get_sep(),
                 widget.Memory(
                     foreground=colors.blue[0],
-                    format='{MemPercent}%{MemUsed: .0f}M/{MemTotal: .0f}M',
+                    format='RAM {MemPercent}%{MemUsed: .0f}M/{MemTotal: .0f}M',
                     font='Titillium Web Bold'
                 ),
                 get_sep(),
