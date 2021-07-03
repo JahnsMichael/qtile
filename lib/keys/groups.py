@@ -18,6 +18,7 @@ GROUP_CYCLE_KEYS = [
 
 GROUP_KEYS = [*SCRATCHPAD_KEYS, *GROUP_CYCLE_KEYS]
 
+
 for group in get_groups():
 
     if (group.name == "scratchpad"):
@@ -31,3 +32,29 @@ for group in get_groups():
         Key(["mod1"], group.name[0], lazy.window.togroup(group.name),
             desc="move focused window to group {}".format(group.name)),
     ])
+
+APP_MAPPING = {
+    '1': "/usr/bin/codium -n",
+    '2': "/usr/bin/codium -n",
+    '3': "/usr/bin/brave",
+    '4': "/usr/bin/brave",
+    '5': "/usr/bin/brave",
+    '6': "/usr/bin/pcmanfm",
+    '7': "/usr/bin/inkscape",
+    '8': "/usr/bin/brave",
+    '9': "/usr/bin/brave --app=https://web.whatsapp.com &&" +
+         "/usr/bin/brave --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html",
+    '0': "/usr/bin/pamac-manager"
+}
+
+
+def spawn_group_apps(qtile):
+    qtile.cmd_spawn(APP_MAPPING[qtile.current_group.name])
+
+
+GROUP_KEYS.append(
+    Key(["control"], "Return",
+        lazy.function(spawn_group_apps),
+        desc="Spawn app according to the mapping"
+        )
+)

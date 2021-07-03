@@ -6,20 +6,16 @@ from libqtile.config import (
 )
 
 GROUPS = [
-    Group("1", matches=[
-        Match(wm_class="vscodium"),  # vscodium
-    ]),
+    Group("1"),
     Group("2"),
-    Group("3", matches=[
-        Match(role="browser"),  # browser
-    ]),
+    Group("3"),
     Group("4"),
     Group("5"),
-    Group("6", matches=[
-        Match(wm_class="pcmanfm"),  # pcmanfm file browser
-    ]),
+    Group("6"),
     Group("7"),
-    Group("8"),
+    Group("8", matches=[
+        Match(wm_class="zoom"),
+    ]),
     Group("9", matches=[
         Match(wm_class="web.whatsapp.com"),  # Whatsapp Web
         # LINE Browser Extension
