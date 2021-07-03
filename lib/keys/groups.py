@@ -34,22 +34,25 @@ for group in get_groups():
     ])
 
 APP_MAPPING = {
-    '1': "/usr/bin/codium -n",
-    '2': "/usr/bin/codium -n",
-    '3': "/usr/bin/brave",
-    '4': "/usr/bin/brave",
-    '5': "/usr/bin/brave",
-    '6': "/usr/bin/pcmanfm",
-    '7': "/usr/bin/inkscape",
-    '8': "/usr/bin/brave",
-    '9': "/usr/bin/brave --app=https://web.whatsapp.com &&" +
-         "/usr/bin/brave --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html",
-    '0': "/usr/bin/pamac-manager"
+    '1': ["/usr/bin/codium -n"],
+    '2': ["/usr/bin/codium -n"],
+    '3': ["/usr/bin/brave"],
+    '4': ["/usr/bin/brave"],
+    '5': ["/usr/bin/brave"],
+    '6': ["/usr/bin/pcmanfm"],
+    '7': ["/usr/bin/inkscape"],
+    '8': ["/usr/bin/brave"],
+    '9': [
+        "/usr/bin/brave --app=https://web.whatsapp.com",
+        "/usr/bin/brave --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html"
+    ],
+    '0': ["/usr/bin/pamac-manager"]
 }
 
 
 def spawn_group_apps(qtile):
-    qtile.cmd_spawn(APP_MAPPING[qtile.current_group.name])
+    for app in APP_MAPPING[qtile.current_group.name]:
+        qtile.cmd_spawn(app)
 
 
 GROUP_KEYS.append(
