@@ -28,17 +28,10 @@ GROUPS.append(
     ScratchPad("scratchpad", [
         DropDown(
             "term",
-            ["alacritty", "-o", "background_opacity=0.8"],
+            ["alacritty", "-o", "background_opacity=0.8", "-e", "tmux", "a", "-t", "scratchpad"],
             opacity=1.0,
             x=0, y=-0.032,
             width=0.995, height=1.025
-        ),
-        DropDown(
-            "mocp",
-            ["alacritty", "-o", "background_opacity=0.8", "-e", "mocp"],
-            opacity=1.0,
-            x=0.3, y=0.15,
-            width=0.412, height=0.65
         ),
     ]))
 
