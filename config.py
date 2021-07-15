@@ -23,7 +23,7 @@ from lib.keys import get_keys
 from lib.groups import get_groups
 from lib.layouts import get_floating_layout, get_layouts
 from lib.mouse import get_mouse
-from lib.const import colors
+from lib.const import colors, fonts
 
 import os
 import subprocess
@@ -41,7 +41,7 @@ keys = get_keys()
 layouts = get_layouts()
 
 widget_defaults = dict(
-    font='Titillium Web',
+    font=fonts.MAIN,
     fontsize=11,
     padding=10,
     background=colors.common['bg']
@@ -52,9 +52,7 @@ screens = get_screens()
 
 @hook.subscribe.startup
 def every_start():
-    global screens
     xrandr()
-    screens = get_screens()
 
 
 # Drag floating layouts.
