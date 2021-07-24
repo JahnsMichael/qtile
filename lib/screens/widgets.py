@@ -16,6 +16,21 @@ SEP_L = widget.Sep(
     linewidth=20
 )
 
+SEP_S_DARK = widget.Sep(
+    foreground=colors.black[4],
+    background=colors.black[4],
+    linewidth=5
+)
+SEP_M_DARK = widget.Sep(
+    foreground=colors.black[4],
+    background=colors.black[4],
+    linewidth=5
+)
+SEP_L_DARK = widget.Sep(
+    foreground=colors.black[4],
+    background=colors.black[4],
+    linewidth=5
+)
 
 def get_top_widgets():
 
@@ -64,13 +79,19 @@ def get_top_widgets():
     ]
 
     CURRENT_WINDOW = [
-        widget.WindowName(max_chars=30),
+        SEP_S_DARK,
+        widget.WindowName(
+            max_chars=30, 
+            background=colors.black[4],
+            empty_group_string=" Hello, welcome!"
+        ),
         *[WindowControl(
             action_type=action, 
             font=fonts.ICON,
-            padding=5
-        ) for action in ["KILL", "MAX","MIN", "FLOAT"]],
-        SEP_L
+            padding=5,
+            background=colors.black[4]
+        ) for action in ["FLOAT","MIN", "MAX", "KILL"]],
+        SEP_S_DARK
     ]
 
     MEMORY = [
@@ -121,8 +142,8 @@ def get_top_widgets():
     ]
 
     TOP_WIDGETS = [
-        *GROUPBOXES, SEP_L,
-        *CURRENT_WINDOW, SEP_S,
+        *GROUPBOXES,
+        *CURRENT_WINDOW,
         widget.Chord(), SEP_S,
         *MEMORY, SEP_S,
         *BATTERY, SEP_S,
@@ -138,6 +159,7 @@ def get_bottom_widgets():
             text=text,
             font=fonts.ICON,
             foreground=color,
+            background=colors.black[4],
             mouse_callbacks={
                 'Button1': lambda: qtile.cmd_spawn(cmd)
             }
@@ -163,23 +185,27 @@ def get_bottom_widgets():
         max_title_width=200
     )
 
-    SYSTRAY = widget.Systray(foreground=colors.brown[5])
+    SYSTRAY = widget.Systray(
+        foreground=colors.black[5],
+        background=colors.black[4]
+    )
     POWER = widget.QuickExit(
         default_text=fontawesome.POWER,
         foreground=colors.red[0],
-        font=fonts.ICON
+        font=fonts.ICON,
+        background=colors.black[4]
     )
 
     BOTTOM_WIDGETS = [
-        SEP_S,
+        SEP_S_DARK,
         *APP_BTN,
-        SEP_L,
+        SEP_L_DARK,
         APP_LIST,
-        SEP_S,
+        SEP_S_DARK,
         SYSTRAY,
-        SEP_L,
+        SEP_L_DARK,
         POWER,
-        SEP_L
+        SEP_L_DARK
     ]
 
     return BOTTOM_WIDGETS
