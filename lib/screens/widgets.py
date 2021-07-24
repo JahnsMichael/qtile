@@ -1,5 +1,7 @@
 from libqtile import qtile, widget
 from lib.const import colors, fontawesome, fonts
+from lib.screens.custom_widgets.tasklist import CustomTaskList
+from lib.screens.custom_widgets.window_control import WindowControl
 
 SEP_S = widget.Sep(
     foreground=colors.common['bg'],
@@ -28,18 +30,20 @@ def get_top_widgets():
     }
 
     def get_groupbox(text, scheme, groups):
-        return [widget.TextBox(
-            text=text,
-            font=fonts.ICON,
-            foreground=scheme[0],
-        ),
+        return [
+            widget.TextBox(
+                text=text,
+                font=fonts.ICON,
+                foreground=scheme[0],
+            ),
             widget.GroupBox(
-            **group_box_attr,
-            highlight_color=[colors.common['bg'], scheme[0]],
-            this_screen_border=scheme[0],
-            this_current_screen_border=scheme[1],
-            visible_groups=groups
-        )]
+                **group_box_attr,
+                highlight_color=[colors.common['bg'], scheme[0]],
+                this_screen_border=scheme[0],
+                this_current_screen_border=scheme[1],
+                visible_groups=groups
+            )
+        ]
 
     CODE_GROUPBOX = get_groupbox(
         fontawesome.CODE, [colors.brown[0], colors.brown[2]], ["1", "2"])
@@ -57,6 +61,16 @@ def get_top_widgets():
         *DOCS_GROUPBOX,
         SEP_M,
         *MEET_GROUPBOX
+    ]
+
+    CURRENT_WINDOW = [
+        widget.WindowName(max_chars=30),
+        *[WindowControl(
+            action_type=action, 
+            font=fonts.ICON,
+            padding=5
+        ) for action in ["KILL", "MAX","MIN", "FLOAT"]],
+        SEP_L
     ]
 
     MEMORY = [
@@ -107,8 +121,8 @@ def get_top_widgets():
     ]
 
     TOP_WIDGETS = [
-        *GROUPBOXES, SEP_M,
-        widget.WindowName(max_chars=30), SEP_S,
+        *GROUPBOXES, SEP_L,
+        *CURRENT_WINDOW, SEP_S,
         widget.Chord(), SEP_S,
         *MEMORY, SEP_S,
         *BATTERY, SEP_S,
@@ -136,13 +150,13 @@ def get_bottom_widgets():
         get_app_btn(fontawesome.FOLDER, colors.green[0], "/usr/bin/pcmanfm"),
     ]
 
-    APP_LIST = widget.TaskList(
+    APP_LIST = CustomTaskList(
         border=colors.brown[2],
         rounded=False,
         highlight_method='block',
-        txt_floating='🗗 ',
-        txt_maximized='🗖 ',
-        txt_minimized='🗕 ',
+        txt_floating=f"{fontawesome.FLOAT} ",
+        txt_maximized=f"{fontawesome.MAXIMIZE} ",
+        txt_minimized=f"{fontawesome.MINIMIZE} ",
         padding=4,
         margin=0,
         icon_size=15,
