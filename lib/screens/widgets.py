@@ -185,6 +185,12 @@ def get_bottom_widgets():
         max_title_width=200
     )
 
+    MUSIC = widget.Moc(
+        foreground=colors.brown[1],
+        play_color=colors.brown[1],
+        noplay_color=colors.brown[0],
+    )
+
     SYSTRAY = widget.Systray(
         foreground=colors.black[5],
         background=colors.black[4]
@@ -200,7 +206,8 @@ def get_bottom_widgets():
         SEP_S_DARK,
         *APP_BTN,
         SEP_L_DARK,
-        APP_LIST,
+        APP_LIST, SEP_S,
+        MUSIC, SEP_S,
         SEP_S_DARK,
         SYSTRAY,
         SEP_L_DARK,
