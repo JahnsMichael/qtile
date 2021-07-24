@@ -9,13 +9,14 @@ WINDOW_FOCUS_KEYS = [
 ]
 
 WINDOW_SIZE_KEYS = [
-    Key(["shift"], "Left", lazy.layout.shrink(),
+    Key(["shift"], "Left", lazy.layout.grow_left(),
         desc="Grow window to the left"),
-    Key(["shift"], "Right", lazy.layout.grow(),
+    Key(["shift"], "Right", lazy.layout.grow_right(),
         desc="Grow window to the right"),
-    Key(["shift"], "Down", lazy.layout.shrink(),
+    Key(["shift"], "Down", lazy.layout.grow_down(),
         desc="Grow window down"),
-    Key(["shift"], "Up", lazy.layout.grow(), desc="Grow window up"),
+    Key(["shift"], "Up", lazy.layout.grow_up(), 
+        desc="Grow window up"),
     Key([], "n", lazy.layout.normalize(),
         desc="Reset all window sizes"),
     Key(["mod1"], "Return", lazy.window.toggle_maximize(),
@@ -23,14 +24,19 @@ WINDOW_SIZE_KEYS = [
 ]
 
 WINDOW_MOVE_KEYS = [
-    Key(["mod1"], "Left", lazy.layout.swap_left(),
+    Key(["mod1"], "Left", lazy.layout.shuffle_left(),
         desc="Move window to the left"),
-    Key(["mod1"], "Right", lazy.layout.swap_right(),
+    Key(["mod1"], "Right", lazy.layout.shuffle_right(),
         desc="Move window to the right"),
     Key(["mod1"], "Down", lazy.layout.shuffle_down(),
         desc="Move window down"),
-    Key(["mod1"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
-    Key(["shift"], "backslash", lazy.layout.flip()),
+    Key(["mod1"], "Up", lazy.layout.shuffle_up(), 
+        desc="Move window up"),
+    Key(["mod1", "shift"], "Left", lazy.layout.swap_column_left(),
+        desc="Swap column left"),
+    Key(["mod1", "shift"], "Right", lazy.layout.swap_column_right(),
+        desc="Swap column right"),
+    Key(["shift"], "backslash", lazy.layout.toggle_split()),
 ]
 
 WINDOW_TOGGLE_FLOATING_KEYS = [

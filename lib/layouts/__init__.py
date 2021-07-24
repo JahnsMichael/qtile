@@ -14,9 +14,15 @@ layout_theme = {
 
 def get_layouts():
     return [
-        layout.MonadTall(**layout_theme),
-        layout.Tile(**layout_theme),
-        # layout.Columns(**layout_theme),
+        layout.Columns(
+            **layout_theme,
+            border_focus_stack=colors.blue[0],
+            border_normal_stack=colors.common['bg'],
+            border_on_single=True,
+            insert_position=1,
+        ),
+        # layout.MonadTall(**layout_theme),
+        # layout.Tile(**layout_theme),
         # layout.Max(**layout_theme),
         # layout.Matrix(**layout_theme),
         # layout.TreeTab(
