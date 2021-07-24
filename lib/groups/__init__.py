@@ -24,11 +24,13 @@ GROUPS = [
     Group("0")
 ]
 
+cmd = f"kitty -o background_opacity=0.8"
+
 GROUPS.append(
     ScratchPad("scratchpad", [
         DropDown(
             "term",
-            ["alacritty", "-o", "background_opacity=0.8", "-e", "tmux", "a", "-t", "scratchpad"],
+            cmd,
             opacity=1.0,
             x=0, y=-0.032,
             width=0.995, height=1.025
