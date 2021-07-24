@@ -35,7 +35,7 @@ for group in get_groups():
 
 APP_MAPPING = {
     '1': ["/usr/bin/codium -n"],
-    '2': ["/usr/bin/codium -n"],
+    '2': ["/usr/bin/brave"],
     '3': ["/usr/bin/brave"],
     '4': ["/usr/bin/brave"],
     '5': ["/usr/bin/brave"],
