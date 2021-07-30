@@ -32,10 +32,14 @@ WINDOW_MOVE_KEYS = [
         desc="Move window down"),
     Key(["mod1"], "Up", lazy.layout.shuffle_up(), 
         desc="Move window up"),
-    Key(["mod1", "shift"], "Left", lazy.layout.swap_column_left(),
+    Key(["mod1", "shift"], "Left", lazy.layout.flip_left(),
         desc="Swap column left"),
-    Key(["mod1", "shift"], "Right", lazy.layout.swap_column_right(),
+    Key(["mod1", "shift"], "Right", lazy.layout.flip_right(),
         desc="Swap column right"),
+    Key(["mod1", "shift"], "Down", lazy.layout.flip_down(),
+        desc="Swap column down"),
+    Key(["mod1", "shift"], "Up", lazy.layout.flip_up(),
+        desc="Swap column up"),
     Key(["shift"], "backslash", lazy.layout.toggle_split()),
 ]
 

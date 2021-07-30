@@ -1,12 +1,12 @@
 from libqtile import layout
+from lib.layouts.custom_bsp import BorderOnSingleBSP
 from libqtile.config import Match
-from lib.const import colors
+from lib.const import colors, fonts
 
 layout_theme = {
-    "border_width": 3,
-    "fullscreen_border_width": 1,
-    "font": "Overpass",
-    "margin": 5,
+    "border_width": 2,
+    "font": fonts.MAIN,
+    "margin": 3,
     "border_focus": colors.brown[2],
     "border_normal": colors.common['bg']
 }
@@ -14,13 +14,18 @@ layout_theme = {
 
 def get_layouts():
     return [
-        layout.Columns(
-            **layout_theme,
-            border_focus_stack=colors.blue[0],
-            border_normal_stack=colors.common['bg'],
+        BorderOnSingleBSP(
+            **layout_theme, 
             border_on_single=True,
-            insert_position=1,
+            fair=False,
         ),
+        # layout.Columns(
+        #     **layout_theme,
+        #     border_focus_stack=colors.blue[0],
+        #     border_normal_stack=colors.common['bg'],
+        #     border_on_single=True,
+        #     insert_position=1,
+        # ),
         # layout.MonadTall(**layout_theme),
         # layout.Tile(**layout_theme),
         # layout.Max(**layout_theme),
@@ -35,7 +40,6 @@ def get_layouts():
         #     **layout_theme
         # ),
         # Try more layouts by unleashing below layouts.
-        # layout.Bsp(**layout_theme),
         # layout.Stack(num_stacks=2),
         # layout.MonadWide(**layout_theme),
         # layout.RatioTile(**layout_theme),
@@ -45,7 +49,7 @@ def get_layouts():
 
 
 def get_floating_layout():
-    return layout.Floating(float_rules=[
+    floating_layout = layout.Floating(float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
         Match(wm_class='confirmreset'),  # gitk
@@ -60,3 +64,4 @@ def get_floating_layout():
         Match(wm_class='Conky'),
         Match(wm_class='pentablet'),
     ], **layout_theme)
+    return floating_layout
