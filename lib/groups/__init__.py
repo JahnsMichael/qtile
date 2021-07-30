@@ -32,8 +32,9 @@ GROUPS.append(
             "term",
             cmd,
             opacity=1.0,
-            x=0, y=-0.032,
-            width=0.995, height=1.025
+            x=0.05, y=0.05,
+            width=0.9, height=0.9,
+            on_focus_lost_hide=False,
         ),
     ]))
 
