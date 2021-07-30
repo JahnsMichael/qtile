@@ -1,6 +1,7 @@
 from libqtile.config import Key
 from libqtile.lazy import lazy
 from lib.groups import get_groups
+from lib.const import apps
 
 SCRATCHPAD_KEYS = [
     Key([], "Return", lazy.group["scratchpad"].dropdown_toggle('term'),
@@ -34,19 +35,19 @@ for group in get_groups():
     ])
 
 APP_MAPPING = {
-    '1': ["/usr/bin/codium -n"],
-    '2': ["/usr/bin/brave"],
-    '3': ["/usr/bin/brave"],
-    '4': ["/usr/bin/brave"],
-    '5': ["/usr/bin/brave"],
-    '6': ["/usr/bin/pcmanfm"],
-    '7': ["/usr/bin/inkscape"],
-    '8': ["/usr/bin/brave"],
+    '1': [apps.CODE],
+    '2': [apps.WEB],
+    '3': [apps.WEB],
+    '4': [apps.WEB],
+    '5': [apps.WEB],
+    '6': [apps.FILE],
+    '7': [apps.PENPOT],
+    '8': [apps.WEB],
     '9': [
-        "/usr/bin/brave --app=https://web.whatsapp.com",
-        "/usr/bin/brave --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html"
+        apps.WHATSAPP,
+        apps.LINE
     ],
-    '0': ["/usr/bin/pamac-manager"]
+    '0': [apps.PAMAC]
 }
 
 

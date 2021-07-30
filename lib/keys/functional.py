@@ -1,6 +1,6 @@
 from libqtile.config import Key
 from libqtile.lazy import lazy
-from lib.const import MOD
+from lib.const import MOD, apps
 from lib.scripts import (
     screenshot,
 )
@@ -28,14 +28,16 @@ def sosmed(qtile):
     qtile.cmd_spawn('/usr/bin/brave --app=chrome-extension://ophjlpahpchlmihnnnihgmmeilfjmjjc/index.html')
 
 APP_KEYS = [
-    Key(['control'], "1", lazy.spawn(["/usr/bin/codium", "-n"]),
+    Key(['control'], "1", lazy.spawn([apps.CODE]),
         desc="Spawn text editor."),
-    Key(['control'], "3", lazy.spawn(['/usr/bin/brave']),
+    Key(['control'], "3", lazy.spawn([apps.WEB]),
         desc="Spawn web browser."),
-    Key(['control'], "6", lazy.spawn(["/usr/bin/pcmanfm"]),
+    Key(['control'], "6", lazy.spawn([apps.WEB]),
         desc="Spawn file browser."),
     Key(['control'], "9", lazy.function(sosmed),
         desc="Spawn social media's apps."),
+    Key(['shift'], "Return", lazy.spawn([apps.TERM]),
+        desc="Spawn terminal."),
 ]
 
 # def show_keys_key(keys):
