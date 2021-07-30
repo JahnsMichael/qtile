@@ -13,8 +13,16 @@ from lib.screens.widgets import (
 def get_default_screen():
     attrs = {"size": 25, "opacity": 0.9}
     return Screen(
-        top=bar.Bar(get_top_widgets(), **attrs),
-        bottom=bar.Bar(get_bottom_widgets(), **attrs)
+        top=bar.Bar(
+            get_top_widgets(), 
+            **attrs,
+            margin=[2,2,0,2]
+        ),
+        bottom=bar.Bar(
+            get_bottom_widgets(), 
+            **attrs,
+            margin=[0,200,2,200]
+        )
     )
 
 
