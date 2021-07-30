@@ -63,10 +63,12 @@ dgroups_app_rules = []  # type: List
 main = None  # WARNING: this is deprecated and will be removed soon
 follow_mouse_focus = False
 bring_front_click = False
-cursor_warp = False
+cursor_warp = True
 floating_layout = get_floating_layout()
-auto_fullscreen = True
+auto_fullscreen = False
 focus_on_window_activation = "smart"
+reconfigure_screens = True
+
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
