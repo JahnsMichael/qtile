@@ -1,7 +1,5 @@
 from libqtile.widget.textbox import TextBox
 from lib.const import fontawesome, colors
-from libqtile.log_utils import logger
-
 
 class WindowControl(TextBox):
 
@@ -24,7 +22,8 @@ class WindowControl(TextBox):
             "MAX": current_win.cmd_toggle_maximize,
             "FLOAT": current_win.cmd_toggle_floating,
         }
-        action_map[self.action_type]()
+        if self.action_type:
+            action_map[self.action_type]()
 
     def get_text(self):
         text_map = {
@@ -33,7 +32,9 @@ class WindowControl(TextBox):
             "MAX": fontawesome.MAXIMIZE,
             "FLOAT": fontawesome.FLOAT,
         }
-        return text_map[self.action_type]
+        if self.action_type:
+            return text_map[self.action_type]
+        return fontawesome.CLOSE
 
     def get_color(self):
         color_map = {
@@ -42,4 +43,6 @@ class WindowControl(TextBox):
             "MAX": colors.brown[0],
             "FLOAT": colors.green[0],
         }
-        return color_map[self.action_type]
+        if self.action_type:
+            return color_map[self.action_type]
+        return colors.red[0]
