@@ -18,33 +18,8 @@ def get_layouts():
             **layout_theme, 
             border_on_single=True,
             fair=False,
-        ),
-        # layout.Columns(
-        #     **layout_theme,
-        #     border_focus_stack=colors.blue[0],
-        #     border_normal_stack=colors.common['bg'],
-        #     border_on_single=True,
-        #     insert_position=1,
-        # ),
-        # layout.MonadTall(**layout_theme),
-        # layout.Tile(**layout_theme),
-        # layout.Max(**layout_theme),
-        # layout.Matrix(**layout_theme),
-        # layout.TreeTab(
-        #     bg_color=colors.common['bg'],
-        #     active_bg=colors.common['accent'],
-        #     inactive_bg=colors.common['fg'],
-        #     urgent_bg=colors.red[0],
-        #     panel_width=100,
-        #     rounded=False,
-        #     **layout_theme
-        # ),
-        # Try more layouts by unleashing below layouts.
-        # layout.Stack(num_stacks=2),
-        # layout.MonadWide(**layout_theme),
-        # layout.RatioTile(**layout_theme),
-        # layout.VerticalTile(**layout_theme),
-        # layout.Zoomy(**layout_theme),
+            grow_amount=5,
+        )
     ]
 
 
