@@ -41,7 +41,7 @@ APP_MAPPING = {
     '4': [apps.WEB],
     '5': [apps.WEB],
     '6': [apps.FILE],
-    '7': [apps.PENPOT],
+    '7': [apps.INKSCAPE],
     '8': [apps.WEB],
     '9': [
         apps.WHATSAPP,
