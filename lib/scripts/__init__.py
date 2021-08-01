@@ -13,12 +13,17 @@ def screenshot(qtile):
     qtile.cmd_spawn(f'maim -s {filename}')
     
 def xrandr():
-    monitors = get_monitors()
-    if (len(monitors) > 1):
-        cmd = "xrandr "
-        for i in range(1, len(monitors)):
-            cmd += f"--output {monitors[i]} --auto --right-of {monitors[i-1]} "
-        subprocess.call(cmd, shell=True)
+    active_monitors = get_monitors()
+    all_monitors = get_monitors(all=True)
+    cmd = "xrandr "
+    if (len(active_monitors) > 1):
+        for i in range(1, len(active_monitors)):
+            cmd += f"--output {active_monitors[i]} --auto --right-of {active_monitors[i-1]} "
+    else:
+        for i in range(1, len(all_monitors)):
+            cmd += f"--output {all_monitors[i]} --off "
+    subprocess.call(cmd, shell=True)
+
 
 def get_monitors(all=False):
     if (all):

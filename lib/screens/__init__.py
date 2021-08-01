@@ -10,7 +10,7 @@ from lib.screens.widgets import (
 )
 
 
-def get_default_screen():
+def get_default_screen(systray=False):
     attrs = {"size": 25, "opacity": 0.9}
     return Screen(
         top=bar.Bar(
@@ -19,13 +19,15 @@ def get_default_screen():
             margin=[2,2,0,2]
         ),
         bottom=bar.Bar(
-            get_bottom_widgets(), 
+            get_bottom_widgets(systray), 
             **attrs,
-            margin=[0,200,2,200]
+            margin=[1,200,2,200]
         )
     )
 
 
 def get_screens():
-    xrandr()
-    return [get_default_screen() for i in range(len(get_monitors()))]
+    screens = [get_default_screen(systray=True),]
+    for i in range(len(get_monitors())-1):
+        screens.append(get_default_screen())
+    return screens

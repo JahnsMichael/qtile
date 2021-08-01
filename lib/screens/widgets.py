@@ -153,7 +153,7 @@ def get_top_widgets():
     return TOP_WIDGETS
 
 
-def get_bottom_widgets():
+def get_bottom_widgets(systray=False):
     def get_app_btn(text, color, cmd):
         return widget.TextBox(
             text=text,
@@ -182,7 +182,8 @@ def get_bottom_widgets():
         padding=4,
         margin=0,
         icon_size=15,
-        max_title_width=200
+        max_title_width=200,
+        urgent_border=colors.red[0]
     )
 
     MUSIC = widget.Moc(
@@ -202,7 +203,7 @@ def get_bottom_widgets():
         background=colors.black[4]
     )
 
-    BOTTOM_WIDGETS = [
+    BOTTOM_WIDGETS_SYSTRAY = [
         SEP_S_DARK,
         *APP_BTN,
         SEP_L_DARK,
@@ -215,4 +216,17 @@ def get_bottom_widgets():
         SEP_L_DARK
     ]
 
+    BOTTOM_WIDGETS = [
+        SEP_S_DARK,
+        *APP_BTN,
+        SEP_L_DARK,
+        APP_LIST, SEP_S,
+        MUSIC, SEP_S,
+        SEP_L_DARK,
+        POWER,
+        SEP_L_DARK
+    ]
+    
+    if systray:
+        return BOTTOM_WIDGETS_SYSTRAY
     return BOTTOM_WIDGETS
