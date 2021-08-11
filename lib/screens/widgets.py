@@ -32,7 +32,7 @@ SEP_L_DARK = widget.Sep(
     linewidth=5
 )
 
-def get_top_widgets():
+def get_top_widgets(systray=False):
 
     group_box_attr = {
         "rounded": False,
@@ -56,7 +56,15 @@ def get_top_widgets():
                 highlight_color=[colors.common['bg'], scheme[0]],
                 this_screen_border=scheme[0],
                 this_current_screen_border=scheme[1],
-                visible_groups=groups
+                visible_groups=groups[0],
+            ),
+            widget.GroupBox(
+                **group_box_attr,
+                highlight_color=[colors.common['bg'], scheme[0]],
+                this_screen_border=scheme[0],
+                this_current_screen_border=scheme[1],
+                visible_groups=groups[1:],
+                hide_unused=True
             )
         ]
 
@@ -70,36 +78,47 @@ def get_top_widgets():
         fontawesome.CAMERA, [colors.red[0], colors.red[1]], ["8", "9", "0"])
     GROUPBOXES = [
         *CODE_GROUPBOX,
-        SEP_M,
+        SEP_S,
         *WEB_GROUPBOX,
-        SEP_M,
+        SEP_S,
         *DOCS_GROUPBOX,
-        SEP_M,
+        SEP_S,
         *MEET_GROUPBOX
     ]
 
     CURRENT_WINDOW = [
+        SEP_S,
         SEP_S_DARK,
-        widget.WindowName(
-            max_chars=30, 
-            background=colors.black[4],
-            empty_group_string=" Hello, welcome!"
-        ),
         *[WindowControl(
             action_type=action, 
             font=fonts.ICON,
             padding=5,
             background=colors.black[4]
-        ) for action in ["FLOAT","MIN", "MAX", "KILL"]],
+        ) for action in ["KILL","MAX", "MIN", "FLOAT"]],
+        SEP_S_DARK,
+        CustomTaskList(
+            background=colors.black[4],
+            border=colors.brown[2],
+            rounded=False,
+            highlight_method='block',
+            txt_floating=f"{fontawesome.FLOAT} ",
+            txt_maximized=f"{fontawesome.MAXIMIZE} ",
+            txt_minimized=f"{fontawesome.MINIMIZE} ",
+            padding=4,
+            margin=0,
+            icon_size=15,
+            max_title_width=200,
+            urgent_border=colors.red[0]
+        ),
         SEP_S_DARK
     ]
 
     MEMORY = [
-        widget.TextBox(
-            text=fontawesome.MEMORY,
-            font=fonts.ICON,
-            foreground=colors.blue[0],
-        ),
+        # widget.TextBox(
+        #     text=fontawesome.MEMORY,
+        #     font=fonts.ICON,
+        #     foreground=colors.blue[0],
+        # ),
         widget.Memory(
             foreground=colors.blue[0],
             format='{MemPercent}%{MemUsed: .0f}M/{MemTotal: .0f}M',
@@ -108,11 +127,11 @@ def get_top_widgets():
     ]
 
     BATTERY = [
-        widget.TextBox(
-            text=fontawesome.BATTERY,
-            font=fonts.ICON,
-            foreground=colors.brown[5],
-        ),
+        # widget.TextBox(
+        #     text=fontawesome.BATTERY,
+        #     font=fonts.ICON,
+        #     foreground=colors.brown[5],
+        # ),
         # widget.BatteryIcon(
         #     theme_path="/home/jahnsmichael/.config/qtile/assets/battery",
         #     padding=8,
@@ -129,17 +148,28 @@ def get_top_widgets():
         )
     ]
     CLOCK = [
-        widget.TextBox(
-            text=fontawesome.CLOCK,
-            font=fonts.ICON,
-            foreground=colors.green[0],
-        ),
+        # widget.TextBox(
+        #     text=fontawesome.CLOCK,
+        #     font=fonts.ICON,
+        #     foreground=colors.green[0],
+        # ),
         widget.Clock(
             format='%a, %d %b %Y | %H:%M:%S',
             foreground=colors.green[0],
             font=fonts.MAIN
         ),
     ]
+    
+    SYSTRAY = widget.Systray(
+        foreground=colors.black[5],
+        icon_size=15
+    )
+
+    POWER = widget.QuickExit(
+        default_text=fontawesome.POWER,
+        foreground=colors.red[0],
+        font=fonts.ICON,
+    )
 
     TOP_WIDGETS = [
         *GROUPBOXES,
@@ -150,6 +180,19 @@ def get_top_widgets():
         *CLOCK, SEP_L
     ]
 
+    TOP_WIDGETS_SYSTRAY = [
+        *GROUPBOXES,
+        *CURRENT_WINDOW,
+        widget.Chord(), SEP_S,
+        *MEMORY,
+        *BATTERY,
+        *CLOCK,
+        SYSTRAY, SEP_S,
+        POWER, SEP_S
+    ]
+
+    if systray:
+        return TOP_WIDGETS_SYSTRAY
     return TOP_WIDGETS
 
 

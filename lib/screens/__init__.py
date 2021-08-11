@@ -14,15 +14,15 @@ def get_default_screen(systray=False):
     attrs = {"size": 25, "opacity": 0.9}
     return Screen(
         top=bar.Bar(
-            get_top_widgets(), 
+            get_top_widgets(systray), 
             **attrs,
             margin=[2,2,0,2]
         ),
-        bottom=bar.Bar(
-            get_bottom_widgets(systray), 
-            **attrs,
-            margin=[1,200,2,200]
-        )
+        # bottom=bar.Bar(
+            # get_bottom_widgets(systray), 
+            # **attrs,
+            # margin=[1,200,2,200]
+        # )
     )
 
 
