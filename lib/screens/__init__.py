@@ -15,8 +15,7 @@ def get_default_screen(systray=False):
     return Screen(
         top=bar.Bar(
             get_top_widgets(systray), 
-            **attrs,
-            margin=[2,2,0,2]
+            **attrs
         ),
         # bottom=bar.Bar(
             # get_bottom_widgets(systray), 

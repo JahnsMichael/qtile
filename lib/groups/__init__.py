@@ -24,7 +24,7 @@ GROUPS = [
     Group("0")
 ]
 
-cmd = f"kitty -o background_opacity=0.8"
+cmd = "kitty"
 
 GROUPS.append(
     ScratchPad("scratchpad", [
@@ -34,7 +34,6 @@ GROUPS.append(
             opacity=1.0,
             x=0.05, y=0.05,
             width=0.9, height=0.9,
-            on_focus_lost_hide=False,
         ),
     ]))
 
