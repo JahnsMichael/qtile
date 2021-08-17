@@ -46,11 +46,11 @@ def get_top_widgets(systray=False):
 
     def get_groupbox(text, scheme, groups):
         return [
-            widget.TextBox(
-                text=text,
-                font=fonts.ICON,
-                foreground=scheme[0],
-            ),
+            # widget.TextBox(
+                # text=text,
+                # font=fonts.ICON,
+                # foreground=scheme[0],
+            # ),
             widget.GroupBox(
                 **group_box_attr,
                 highlight_color=[colors.common['bg'], scheme[0]],
