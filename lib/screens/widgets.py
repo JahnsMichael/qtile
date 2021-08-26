@@ -68,6 +68,32 @@ def get_top_widgets(systray=False):
             )
         ]
 
+    def get_app_btn(text, color, cmd):
+            return widget.TextBox(
+                text=text,
+                font=fonts.ICON,
+                foreground=color,
+                fontshadow=colors.black[4],
+                mouse_callbacks={
+                    'Button1': lambda: qtile.cmd_spawn(cmd)
+                }
+            )
+    
+    APP_BTN = [
+        get_app_btn(fontawesome.CODE, colors.brown[0], "/usr/bin/codium -n"),
+        get_app_btn(fontawesome.WEB, colors.blue[0], "/usr/bin/brave"),
+        get_app_btn(fontawesome.FOLDER, colors.green[0], "/usr/bin/pcmanfm"),
+    ]
+
+    START_MENU = widget.Image(
+        filename="~/.config/qtile/assets/mirage-logo.png",
+        margin_x=7,
+        margin_y=5,
+        mouse_callbacks={
+            'Button1': lambda: qtile.cmd_spawn("rofi -show drun")
+        }
+    )
+
     CODE_GROUPBOX = get_groupbox(
         fontawesome.CODE, [colors.brown[0], colors.brown[2]], ["1", "2"])
     WEB_GROUPBOX = get_groupbox(
@@ -88,29 +114,27 @@ def get_top_widgets(systray=False):
 
     CURRENT_WINDOW = [
         SEP_S,
-        SEP_S_DARK,
         *[WindowControl(
             action_type=action, 
             font=fonts.ICON,
-            padding=5,
-            background=colors.black[4]
+            fontshadow=colors.black[4],
+            padding=5
         ) for action in ["KILL","MAX", "MIN", "FLOAT"]],
-        SEP_S_DARK,
+        SEP_S,
         CustomTaskList(
-            background=colors.black[4],
             border=colors.brown[2],
             rounded=False,
             highlight_method='block',
             txt_floating=f"{fontawesome.FLOAT} ",
             txt_maximized=f"{fontawesome.MAXIMIZE} ",
             txt_minimized=f"{fontawesome.MINIMIZE} ",
-            padding=4,
+            padding=7,
             margin=0,
             icon_size=15,
             max_title_width=200,
             urgent_border=colors.red[0]
         ),
-        SEP_S_DARK
+        SEP_S
     ]
 
     MEMORY = [
@@ -172,8 +196,10 @@ def get_top_widgets(systray=False):
     )
 
     TOP_WIDGETS = [
-        *GROUPBOXES,
+        START_MENU,
+        *APP_BTN,
         *CURRENT_WINDOW,
+        *GROUPBOXES,
         widget.Chord(), SEP_S,
         *MEMORY, SEP_S,
         *BATTERY, SEP_S,
@@ -181,8 +207,10 @@ def get_top_widgets(systray=False):
     ]
 
     TOP_WIDGETS_SYSTRAY = [
-        *GROUPBOXES,
+        START_MENU,
+        *APP_BTN,
         *CURRENT_WINDOW,
+        *GROUPBOXES,
         widget.Chord(), SEP_S,
         *MEMORY,
         *BATTERY,

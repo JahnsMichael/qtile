@@ -11,7 +11,7 @@ from lib.screens.widgets import (
 
 
 def get_default_screen(systray=False):
-    attrs = {"size": 25, "opacity": 0.9}
+    attrs = {"size": 30, "opacity": 0.85}
     return Screen(
         top=bar.Bar(
             get_top_widgets(systray), 
