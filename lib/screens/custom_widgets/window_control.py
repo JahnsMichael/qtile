@@ -1,5 +1,7 @@
 from libqtile.widget.textbox import TextBox
+from libqtile import hook
 from lib.const import fontawesome, colors
+from libqtile.widget import base
 
 class WindowControl(TextBox):
 
@@ -13,6 +15,21 @@ class WindowControl(TextBox):
         self.add_callbacks({
             'Button1': self.action
         })
+
+    def _configure(self, qtile, bar):
+        super()._configure(qtile, bar)
+        self.setup_hooks()
+
+    def setup_hooks(self):
+        hook.subscribe.client_name_updated(self.hook_response)
+        hook.subscribe.focus_change(self.hook_response)
+        hook.subscribe.float_change(self.hook_response)
+
+    def hook_response(self, *args):
+        if not self.bar.screen.group.current_window:
+            self.update("")
+        else:
+            self.update(self.get_text())
 
     def action(self):
         current_win = self.bar.screen.group.current_window
