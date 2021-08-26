@@ -94,6 +94,7 @@ def get_top_widgets(systray=False):
         }
     )
 
+    # Split GroupBox into sections
     CODE_GROUPBOX = get_groupbox(
         fontawesome.CODE, [colors.brown[0], colors.brown[2]], ["1", "2"])
     WEB_GROUPBOX = get_groupbox(
@@ -111,6 +112,13 @@ def get_top_widgets(systray=False):
         SEP_S,
         *MEET_GROUPBOX
     ]
+    GROUPBOX = widget.GroupBox(
+        **group_box_attr,
+        highlight_color=[colors.common['bg'], colors.blue[0]],
+        this_screen_border=colors.blue[0],
+        this_current_screen_border=colors.blue[1],
+        hide_unused=True
+    )
 
     CURRENT_WINDOW = [
         SEP_S,
@@ -199,7 +207,7 @@ def get_top_widgets(systray=False):
         START_MENU,
         *APP_BTN,
         *CURRENT_WINDOW,
-        *GROUPBOXES,
+        GROUPBOX,
         widget.Chord(), SEP_S,
         *MEMORY, SEP_S,
         *BATTERY, SEP_S,
@@ -210,7 +218,7 @@ def get_top_widgets(systray=False):
         START_MENU,
         *APP_BTN,
         *CURRENT_WINDOW,
-        *GROUPBOXES,
+        GROUPBOX,
         widget.Chord(), SEP_S,
         *MEMORY,
         *BATTERY,
