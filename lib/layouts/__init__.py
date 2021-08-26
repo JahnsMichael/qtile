@@ -18,6 +18,7 @@ def get_layouts():
             **layout_theme,
             border_normal_stack=colors.red[0],
             border_focus_stack=colors.blue[1],
+            insert_position=1
         ),
         # BorderOnSingleBSP(
             # **layout_theme,
