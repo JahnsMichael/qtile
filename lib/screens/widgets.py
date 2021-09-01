@@ -114,8 +114,8 @@ def get_top_widgets(systray=False):
     ]
     GROUPBOX = widget.GroupBox(
         **group_box_attr,
-        highlight_color=[colors.common['bg'], colors.blue[0]],
-        this_screen_border=colors.blue[0],
+        highlight_color=colors.common["bg"],
+        this_screen_border=colors.brown[3],
         this_current_screen_border=colors.blue[1],
         hide_unused=True
     )

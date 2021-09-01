@@ -10,7 +10,7 @@ class WindowControl(TextBox):
     def __init__(self, action_type="KILL", **config):
         self.action_type = action_type
 
-        super().__init__(text=self.get_text(), foreground=self.get_color(), **config)
+        super().__init__(text="", foreground=self.get_color(), **config)
 
         self.add_callbacks({
             'Button1': self.action
